@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Page Lists</title>
+</head>
+<body>
+<span id="justtext">Click on any of the posts below to continue with the conversation.</span>
+<br />
+<br />
+<div>
+{%for pageid in pagelist %}
+<a href="/comment_box?postid={{pageid}}" target="_blank">{{pageid}}</a>
+<br />
+{%endfor%}
+</div>
+
+
+</body/>
+</html>

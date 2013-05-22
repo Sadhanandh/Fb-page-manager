@@ -81,7 +81,7 @@ def getme():
 
 @app.route('/getallposts')
 def getallposts():
-    return "<br />".join(map(lambda x:x[x.find("_")+1:],mdatabase.getallposts(session['PAGE'])))
+    return render_template("getallposts.html",pagelist=map(lambda x:x[x.find("_")+1:],mdatabase.getallposts(session['PAGE'])))
 
 @app.route('/searchermsg',methods=['GET'])
 def searchermsg():
@@ -132,16 +132,6 @@ def loginpost():
 @app.route("/comment_box")
 def comment_box():
     return render_template("comment_box.html",pid=request.args.get('postid'))
-
-@app.route("/select")
-def select():
-    return """
-    <form action="/comment_box" method="get">
-    Enter the post ID:
-    <input type="TEXT" name="postid" value="" />
-    <input type="submit" class="submit" value="Ok" name="" />
-</form>
-    """
 
 @app.route("/registerpage")
 def registerpage():
