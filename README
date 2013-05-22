@@ -7,3 +7,12 @@ Procedure -
 4. http://gsample.pythonanywhere.com/getallposts
 5. http://gsample.pythonanywhere.com/select    
 6. http://gsample.pythonanywhere.com/comment_box
+
+
+Files : 
+
+flask_app -> main 
+fb -> login and access_token fetching from fblogin
+getnpost -> fetch n post using fb graph api
+mdatabase -> model
+
