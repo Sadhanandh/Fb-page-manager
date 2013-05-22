@@ -1,18 +1,20 @@
 
 Procedure -
 
+Initial Signup:
 1. http://gsample.pythonanywhere.com/fblogin
 2. http://gsample.pythonanywhere.com/login
 3. http://gsample.pythonanywhere.com/registerpage
-4. http://gsample.pythonanywhere.com/getallposts
-5. http://gsample.pythonanywhere.com/select    
-6. http://gsample.pythonanywhere.com/comment_box
+
+Login:
+1. http://gsample.pythonanywhere.com/login
+2. http://gsample.pythonanywhere.com/getallposts
 
 
 Files : 
 
-flask_app -> main 
-fb -> login and access_token fetching from fblogin
-getnpost -> fetch n post using fb graph api
-mdatabase -> model
+flask_app.py -> Main controller
+fb.py -> login and access_token fetching from fblogin
+getnpost.py -> fetch n post using fb graph api
+mdatabase.py -> model
 
