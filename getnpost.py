@@ -12,10 +12,10 @@ def getme(u_id,a_token=aa_token):
         res = urllib2.urlopen(url)
         mydata= json.loads(res.read())
         msg = mydata['message']
-        from_id = mydata['from']['id']
+        from_id = mydata['from']['name']
     except Exception:
         pass
-    return from_id + " Said : "+ msg
+    return "<span id='username' >" + from_id + "</span> : <span id='message'>"+ msg+"</span>"
 
 def postme(msg,u_id,a_token=aa_token,s_page=None):
     indata = urllib.urlencode({'access_token' : a_token,'message' : msg})
