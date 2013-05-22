@@ -16,7 +16,7 @@ def enter(i_data):
 def save(s_type,s_id,s_time,s_page):
     c = mdb.connect(SQL_SERVER,SQL_USER,SQL_PASS,SQL_DB)
     cur = c.cursor()
-    cur.execute('insert into convo(utype,uid,utime,upage) values("%s","%s","%s","%s")'%(s_type,s_id,s_time,s_page))
+    cur.execute('replace into convo(utype,uid,utime,upage) values("%s","%s","%s","%s")'%(s_type,s_id,s_time,s_page))
     cur.connection.commit();
 
 def delete(i_data):

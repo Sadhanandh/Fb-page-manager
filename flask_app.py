@@ -71,9 +71,9 @@ def postme():
     puid = '330241307102935_330288167098249'
     #remove this asap //testing purpose only
     if request.method == 'GET':
-        return getnpost.postme(request.args.get('msg'),request.args.get('puid',puid),session['aid'])
+        return getnpost.postme(request.args.get('msg'),request.args.get('puid',puid),session['aid'],session['PAGE'])
     elif request.method == 'POST':
-        return getnpost.postme(request.form['msg'],request.form.get('puid',puid),session['aid'])
+        return getnpost.postme(request.form['msg'],request.form.get('puid',puid),session['aid'],session['PAGE'])
 
 @app.route('/getme',methods=['GET','POST'])
 def getme():
