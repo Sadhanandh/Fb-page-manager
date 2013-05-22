@@ -137,3 +137,6 @@ def comment_box():
 def registerpage():
     return fb.registerpage(session['aid'],session['PAGE'])
 
+@app.route("/logout")
+def logout():
+    session.clear()
