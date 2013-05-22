@@ -10,6 +10,8 @@ Login:
 1. http://gsample.pythonanywhere.com/login
 2. http://gsample.pythonanywhere.com/getallposts
 
+Logout:
+1. http://gsample.pythonanywhere.com/logout
 
 Files : 
 
