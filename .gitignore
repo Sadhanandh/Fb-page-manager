@@ -1,0 +1,6 @@
+#python
+*.pyc
+# scaffolds
+scaffolds
+#vim swap
+*.swp
