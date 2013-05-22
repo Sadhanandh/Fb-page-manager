@@ -39,24 +39,28 @@ def verify():
     if request.method == 'POST':
         mydata = json.loads(request.data)
         mdatabase.enter(str(mydata))
-        if mydata['entry'][0]['changes'][0]['value']['verb'] == 'add': 
-            if mydata['entry'][0]['changes'][0]['value']['item'] == 'status':
-                s_type =  'post'
-                s_id  = mydata['entry'][0]['changes'][0]['value']['post_id']
-            elif mydata['entry'][0]['changes'][0]['value']['item'] == 'comment':
-                s_type =  'comment'
-                s_id =  mydata['entry'][0]['changes'][0]['value']['comment_id']
-            elif mydata['entry'][0]['changes'][0]['value']['item'] == 'like':
-                pass
-                #no sender id
-            s_time = mydata['entry'][0]['time']
-            mdatabase.save(s_type,s_id,s_time)
-        elif mydata['entry'][0]['changes'][0]['value']['verb'] == 'remove':
-            if mydata['entry'][0]['changes'][0]['value']['item'] == 'status':
-                s_id  = mydata['entry'][0]['changes'][0]['value']['post_id']
-            elif mydata['entry'][0]['changes'][0]['value']['item'] == 'comment':
-                s_id =  mydata['entry'][0]['changes'][0]['value']['comment_id']
-            mdatabase.delete(s_id)
+
+        for val in xrange(len(mydata['entry'])):
+
+            if mydata['entry'][val]['changes'][0]['value']['verb'] == 'add':
+                if mydata['entry'][val]['changes'][0]['value']['item'] == 'status':
+                    s_type =  'post'
+                    s_id  = mydata['entry'][val]['changes'][0]['value']['post_id']
+                elif mydata['entry'][val]['changes'][0]['value']['item'] == 'comment':
+                    s_type =  'comment'
+                    s_id =  mydata['entry'][val]['changes'][0]['value']['comment_id']
+                elif mydata['entry'][val]['changes'][0]['value']['item'] == 'like':
+                    pass
+                    #no sender id
+                s_time = mydata['entry'][val]['time']
+                s_page = mydata['entry'][val]['id']
+                mdatabase.save(s_type,s_id,s_time,s_page)
+            elif mydata['entry'][val]['changes'][0]['value']['verb'] == 'remove':
+                if mydata['entry'][val]['changes'][0]['value']['item'] == 'status':
+                    s_id  = mydata['entry'][val]['changes'][0]['value']['post_id']
+                elif mydata['entry'][val]['changes'][0]['value']['item'] == 'comment':
+                    s_id =  mydata['entry'][val]['changes'][0]['value']['comment_id']
+                mdatabase.delete(s_id)
 
         return str(mydata)
     return output
@@ -77,7 +81,7 @@ def getme():
 
 @app.route('/getallposts')
 def getallposts():
-    return "<br />".join(mdatabase.getallposts())
+    return "<br />".join(map(lambda x:x[x.find("_")+1:],mdatabase.getallposts(session['PAGE'])))
 
 @app.route('/searchermsg',methods=['GET'])
 def searchermsg():

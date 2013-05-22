@@ -13,10 +13,10 @@ def enter(i_data):
     cur.execute('insert into facebook(name) values("%s")'%(i_data))
     cur.connection.commit();
 
-def save(s_type,s_id,s_time):
+def save(s_type,s_id,s_time,s_page):
     c = mdb.connect(SQL_SERVER,SQL_USER,SQL_PASS,SQL_DB)
     cur = c.cursor()
-    cur.execute('insert into convo(utype,uid,utime) values("%s","%s","%s")'%(s_type,s_id,s_time))
+    cur.execute('insert into convo(utype,uid,utime,upage) values("%s","%s","%s","%s")'%(s_type,s_id,s_time,s_page))
     cur.connection.commit();
 
 def delete(i_data):
@@ -25,10 +25,10 @@ def delete(i_data):
     cur.execute('delete from convo where uid="%s"'%(i_data))
     cur.connection.commit();
 
-def getallposts():
+def getallposts(s_page):
     c = mdb.connect(SQL_SERVER,SQL_USER,SQL_PASS,SQL_DB)
     cur = c.cursor()
-    cur.execute('select uid from convo where utype="post"')
+    cur.execute('select uid from convo where utype="post" and upage="%s"'%(s_page))
     ans = cur.fetchall()
     cur.close()
     c.close()
